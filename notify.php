@@ -14,6 +14,25 @@ if (!Config::isConfigured()) {
 
 try {
     $nio = new Notify(Config::$NIO_EMAIL_ADDRESS, Config::$NIO_API_KEY);
+    
+    $username = $_SERVER['PHP_AUTH_USER'];
+    $password = $_SERVER['PHP_AUTH_PW'];
+    
+    if ($username != Config::$CODEBASE_HTTP_USER || $password != Config::$CODEBASE_HTTP_PASS) {
+        
+        if (!$username) {
+            $username = "(empty)";
+        }
+        
+        if (!$password) {
+            $password = "(empty)";
+        }
+        
+        Log::write("Authentication failed (with username: $username and password: $password), aborting.");
+        trigger_error("Authentication failed: Incorrect HTTP username and/or password", E_USER_ERROR);
+        exit(2);
+    }
+    
     $message = new NotifyMessage();
     
     list($data, $type) = explode(";", $payload);
