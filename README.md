@@ -19,7 +19,7 @@ On Mac, you'll get little notifications like this:
 
 You'll need to set up notifications from your Codebase account in the "Notifications" tab when viewing your global dashboard.
 
-There are four class variables that you need to set in the `lib/Config.php` file:
+There are four class variables that you need to set in the `Config.php` file:
 
 * `$CODEBASE_HTTP_USER`: The HTTP Basic username you entered when you set up your notifications within Codebase.
 * `$CODEBASE_HTTP_PASS`: The HTTP Basic password you entered at the same time as the username.  Note, these aren't your Codebase details.
